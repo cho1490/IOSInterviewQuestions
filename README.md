@@ -89,7 +89,7 @@
     func tableview(_ tableView: UITableView, cellForRowAt indexPath : IndexPath) -> UITableViewCell
     
 #### **하나의 View Controller 코드에서 여러 TableView Controller 역할을 해야 할 경우 어떻게 구분해서 구현해야 하는지 설명하시오.**   
-    UItableViewDelegate및 UItableViewDatasource를 채택하고 필수 메서드에서 조건문을 사용하여 여러 TableView중 원하는 TableView를 선택한다.   
+    UItableViewDelegate및 UItableViewDatasource를 채택하고 필수 메서드에서 조건문을 통해 TableView중 원하는 TableView를 선택한다.   
     
 **setNeedsLayout와 setNeedsDisplay의 차이에 대해 설명하시오.**   
 **NSCache와 딕셔너리로 캐시를 구성했을때의 차이를 설명하시오.**   
