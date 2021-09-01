@@ -70,25 +70,18 @@
     
     테이블 뷰는 테이블의 각 행에 대해 셀을 만들지 않는다.   
     대신 테이블뷰는 셀을 느리게 관리하여 테이블의 보이는 부분에 있거나 근처에 있는 셀만 요청한다.   
-    셀을 느리게 생성하면 테이블에서 사용하는 메모리 양이 줄어든다.
+    셀을 느리게 생성하면 테이블에서 사용하는 메모리 양이 줄어든다.   
     
-    최소한 구현해야 하는 DataSource 메서드   
-    행, 섹션의 개수를 제공하는 메서드
+    최소한 구현해야 하는 DataSource 메서드     
+    행, 섹션의 개수를 제공하는 메서드   
 
     행의 개수는 필수적으로 구현해야 함
-    <pre>
-    <code>
         func numberOfSections(in tableView: UITableView) -> Int  // Optional 
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    </code>
-    </pre>   
+        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int   
         
-    셀 모양을 정의하는 메서드
-    <pre>
-    <code>
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    </code>
-    </pre> 
+    셀 모양을 정의하는 메서드   
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell   
+
     
 #### * **하나의 View Controller 코드에서 여러 TableView Controller 역할을 해야 할 경우 어떻게 구분해서 구현해야 하는지 설명하시오.**   
     UItableViewDelegate및 UItableViewDatasource를 채택하고 필수 메서드에서 조건문을 사용하여 여러 TableView중 원하는 TableView를 선택한다.
