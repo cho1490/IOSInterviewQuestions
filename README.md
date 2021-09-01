@@ -61,9 +61,8 @@
 **UINavigationController 의 역할이 무엇인지 설명하시오.**   
 #### **TableView의 동작 방식과 화면에 Cell을 출력하기 위해 최소한 구현해야 하는 DataSource 메서드를 설명하시오.**   
     동작 방식   
-    
-    
-    
+    나중에!   
+   
     UITabelViewDelegate (이 중 필수로 구현하는 메서드는 없습니다.)   
     
     // 지정된 행이 선택 되었다는걸 알리는 메서드
