@@ -76,19 +76,19 @@
     행, 섹션의 개수를 제공하는 메서드
 
     행의 개수는 필수적으로 구현해야 함
-        <pre>
-        <code>
+<pre>
+<code>
         func numberOfSections(in tableView: UITableView) -> Int  // Optional 
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-        </code>
-        </pre>   
+</code>
+</pre>   
         
     셀 모양을 정의하는 메서드
-        <pre>
-        <code>
+<pre>
+<code>
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-        </code>
-        </pre> 
+</code>
+</pre> 
     
 #### * **하나의 View Controller 코드에서 여러 TableView Controller 역할을 해야 할 경우 어떻게 구분해서 구현해야 하는지 설명하시오.**   
     UItableViewDelegate및 UItableViewDatasource를 채택하고 필수 메서드에서 조건문을 사용하여 여러 TableView중 원하는 TableView를 선택한다.
