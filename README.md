@@ -20,8 +20,8 @@
         (https://zeddios.tistory.com/203)    
       
     회전을 하면 Frame의 origin, size는 변하지만 Bounds의 origin, size는 안변함   
-
-#### **실제 디바이스가 없을 경우 개발 환경에서 할 수 있는 것과 없는 것을 설명하시오.**   
+    
+#### **실제 디바이스가 없을 경우 개발 환경에서 사용할 수 없는 것**   
     카메라 활용
     gps
     자이로 센서
@@ -32,7 +32,6 @@
     근접 센서
     기압계
     주변 조도 센서 
-    
     
 * **앱의 콘텐츠나 데이터 자체를 저장/보관하는 특별한 객체를 무엇이라고 하는가?**   
 * **앱 화면의 콘텐츠를 표시하는 로직과 관리를 담당하는 객체를 무엇이라고 하는가?**   
@@ -61,7 +60,9 @@
 * UIWindow 객체의 역할은 무엇인가?   
 * UINavigationController 의 역할이 무엇인지 설명하시오.   
 * TableView를 동작 방식과 화면에 Cell을 출력하기 위해 최소한 구현해야 하는 DataSource 메서드를 설명하시오.   
-* 하나의 View Controller 코드에서 여러 TableView Controller 역할을 해야 할 경우 어떻게 구분해서 구현해야 하는지 설명하시오.   
+#### * 하나의 View Controller 코드에서 여러 TableView Controller 역할을 해야 할 경우 어떻게 구분해서 구현해야 하는지 설명하시오.   
+    UItableViewDelegate및 UItableViewDatasource를 채택하고 필수 메소드에서 조건문을 사용하여 여러 TableView중 원하는 TableView를 선택한다.
+    
 * setNeedsLayout와 setNeedsDisplay의 차이에 대해 설명하시오.   
 * NSCache와 딕셔너리로 캐시를 구성했을때의 차이를 설명하시오.   
 * URLSession에 대해서 설명하시오.   
