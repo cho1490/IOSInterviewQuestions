@@ -1,10 +1,10 @@
 ## IOS
-* **Frame과 Bounds 의 차이점을 설명하시오.**
-## CGPoint: 2차원 좌표계의 점을 표현하는 구조체   
-## CGSize: 너비와 높이값을 가지는 구조체   
-## CGRect: 사각형의 위치와 크기를 포함하는 구조체 - CGPoint CGSize맴버로 가지고 있다.   
+* **Frame과 Bounds 의 차이점을 설명하시오.**   
+** CGPoint: 2차원 좌표계의 점을 표현하는 구조체  
+** CGSize: 너비와 높이값을 가지는 구조체   
+** CGRect: 사각형의 위치와 크기를 포함하는 구조체 - CGPoint CGSize맴버로 가지고 있다.   
 
-공통점
+공통점   
 Frame, Bounds 둘다 UIView의 instance property   
 CGRect 타입 - origin과 size를 가진다
   open var frame: CGRect   
