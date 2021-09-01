@@ -1,25 +1,25 @@
 ## IOS
 * **Frame과 Bounds 의 차이점을 설명하시오.**   
-CGPoint: 2차원 좌표계의 점을 표현하는 구조체
-CGSize: 너비와 높이값을 가지는 구조체
-CGRect: 사각형의 위치와 크기를 포함하는 구조체 - CGPoint CGSize맴버로 가지고 있다.
+ CGPoint: 2차원 좌표계의 점을 표현하는 구조체   
+ CGSize: 너비와 높이값을 가지는 구조체   
+ CGRect: 사각형의 위치와 크기를 포함하는 구조체 - CGPoint CGSize맴버로 가지고 있다.   
 
-공통점 
-Frame, Bounds 둘다 UIView의 instance property
-CGRect 타입 - origin과 size를 가진다
+ 공통점   
+ Frame, Bounds 둘다 UIView의 instance property   
+ CGRect 타입 - origin과 size를 가진다
 
-open var frame: CGRect
-open var bounds: CGRect
+ open var frame: CGRect   
+ open var bounds: CGRect
 
-차이점
-Frame: SuperView의 좌표시스템 안에서 View의 위치와 크기를 나타낸다
-Bounds: 자신만의 좌표시스템에서 View의 위치와 크기를 나타낸다.
+ 차이점   
+ Frame: SuperView의 좌표시스템 안에서 View의 위치와 크기를 나타낸다.   
+ Bounds: 자신만의 좌표시스템에서 View의 위치와 크기를 나타낸다.   
 
-Frame은 UIView의 위치 및 크기를 설정할 때 사용한다.
-Boudns는 1. View 내부에 그름을 그릴 때(drawRect) 사용한다. 2. ScrollView에서 스크롤을 할 때 사용된다. ( ContentOffset )
-https://zeddios.tistory.com/203
+ Frame은 UIView의 위치 및 크기를 설정할 때 사용한다.   
+ Boudns는 1. View 내부에 그름을 그릴 때(drawRect) 사용한다. 2. ScrollView에서 스크롤을 할 때 사용된다. ( ContentOffset )   
+ https://zeddios.tistory.com/203   
 
-회전을 하면 Frame의 origin, size는 변하지만 Bounds의 origin, size는 안변함   
+ 회전을 하면 Frame의 origin, size는 변하지만 Bounds의 origin, size는 안변함   
 
 * **실제 디바이스가 없을 경우 개발 환경에서 할 수 있는 것과 없는 것을 설명하시오.**   
 * **앱의 콘텐츠나 데이터 자체를 저장/보관하는 특별한 객체를 무엇이라고 하는가?**   
