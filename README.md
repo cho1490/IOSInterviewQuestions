@@ -33,17 +33,17 @@
     기압계
     주변 조도 센서 
     
-* **앱의 콘텐츠나 데이터 자체를 저장/보관하는 특별한 객체를 무엇이라고 하는가?**   
-* **앱 화면의 콘텐츠를 표시하는 로직과 관리를 담당하는 객체를 무엇이라고 하는가?**   
-* **App thinning에 대해서 설명하시오.**   
-* **앱이 시작할 때 main.c 에 있는 UIApplicationMain 함수에 의해서 생성되는 객체는 무엇인가?**   
-* **@Main에 대해서 설명하시오.**   
-* **앱이 foreground에 있을 때와 background에 있을 때 어떤 제약사항이 있나요?**   
-* **상태 변화에 따라 다른 동작을 처리하기 위한 앱델리게이트 메서드들을 설명하시오.**   
-* **앱이 In-Active 상태가 되는 시나리오를 설명하시오.**   
-* **scene delegate에 대해 설명하시오.**   
-* **UIApplication 객체의 컨트롤러 역할은 어디에 구현해야 하는가?**   
-* **App의 Not running, Inactive, Active, Background, Suspended에 대해 설명하시오.**   
+**앱의 콘텐츠나 데이터 자체를 저장/보관하는 특별한 객체를 무엇이라고 하는가?**   
+**앱 화면의 콘텐츠를 표시하는 로직과 관리를 담당하는 객체를 무엇이라고 하는가?**   
+**App thinning에 대해서 설명하시오.**   
+**앱이 시작할 때 main.c 에 있는 UIApplicationMain 함수에 의해서 생성되는 객체는 무엇인가?**   
+**@Main에 대해서 설명하시오.**   
+**앱이 foreground에 있을 때와 background에 있을 때 어떤 제약사항이 있나요?**   
+**상태 변화에 따라 다른 동작을 처리하기 위한 앱델리게이트 메서드들을 설명하시오.**   
+**앱이 In-Active 상태가 되는 시나리오를 설명하시오.**   
+**scene delegate에 대해 설명하시오.**   
+**UIApplication 객체의 컨트롤러 역할은 어디에 구현해야 하는가?**   
+**App의 Not running, Inactive, Active, Background, Suspended에 대해 설명하시오.**   
 * NSOperationQueue 와 GCD Queue 의 차이점을 설명하시오.   
 * GCD API 동작 방식과 필요성에 대해 설명하시오.   
 * Global DispatchQueue 의 Qos 에는 어떤 종류가 있는지, 각각 어떤 의미인지 설명하시오.   
@@ -59,26 +59,27 @@
 * UIView 에서 Layer 객체는 무엇이고 어떤 역할을 담당하는지 설명하시오.   
 * UIWindow 객체의 역할은 무엇인가?   
 * UINavigationController 의 역할이 무엇인지 설명하시오.   
-#### * **TableView를 동작 방식과 화면에 Cell을 출력하기 위해 최소한 구현해야 하는 DataSource 메서드를 설명하시오.**   
+#### **TableView를 동작 방식과 화면에 Cell을 출력하기 위해 최소한 구현해야 하는 DataSource 메서드를 설명하시오.**   
     TableView가 화면에 나타나기 전에 데이터 소스 객체에게 테이블의 보이는 부분이나 그 근처에 있는 행에 대한 셀을 제공하도록 요청한다.   
     
     tableView(_:cellForRowAt:)는 다음과 같은 패턴으로 구현된다.   
     1. 테이블 뷰의 dequeueReusableCell(withIdentifier:for:) 메서드를 호출해서 셀 객체를 검색한다.   
     2. 사용자 지정 데이터로 셀을 구성한다.   
     3. 셀을 테이블뷰로 반환한다.   
-    테이블 뷰는 테이블의 각 행에 대해 셀을 만들지 않는다. 대신 테이블뷰는 셀을 느리게 관리하여 테이블의 보이는 부분에 있거나 근처에 있는 셀만 요청한다.   
+    테이블 뷰는 테이블의 각 행에 대해 셀을 만들지 않는다.   
+    대신 테이블뷰는 셀을 느리게 관리하여 테이블의 보이는 부분에 있거나 근처에 있는 셀만 요청한다.   
     셀을 느리게 생성하면 테이블에서 사용하는 메모리 양이 줄어든다.
     
     최소한 구현해야 하는 DataSource 메서드   
     행, 섹션의 개수를 제공하는 메서드
 
-    ###### 행의 개수는 필수적으로 구현해야 함
-        ```swift
+    행의 개수는 필수적으로 구현해야 함
+        ```Swift
         func numberOfSections(in tableView: UITableView) -> Int  // Optional 
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
         ```
-    ###### 셀 모양을 정의하는 메서드
-        ```swift
+    셀 모양을 정의하는 메서드
+        ```Swift
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
         ```   
     
