@@ -165,6 +165,13 @@
     이유: swift는 타입에 민감한 언어이고, Any, AnyObejct 타입은 런타임 시점에 타입이 결정되며, 다운캐스팅이 필요함   
 
 #### **Optional 이란 무엇인지 설명하시오.**   
+    optional은 값이 있을수도 있고 없을수도 있는 상태.    
+    optional 값을 실제로 사용하려면 다음과 같은 과정이 필요하다.   
+
+    if let or guard 를 통한 optional Binding
+    Forced Unwrapping(강제추출) !
+    nil 병합 연산자 ??
+    
 #### **Struct 가 무엇이고 어떻게 사용하는지 설명하시오.**   
 #### **Subscripts에 대해 설명하시오.**   
 #### **instance 메서드와 class 메서드의 차이점을 설명하시오.**   
