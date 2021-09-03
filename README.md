@@ -258,6 +258,25 @@
 
 
 ## Rx
-* Reactive Programming이 무엇인지 설명하시오.   
-* RxSwift에서 Hot Observable과 Cold Observable의 차이를 설명하시오.   
-* Subject와 drive의 차이를 설명하시오.   
+#### **Reactive Programming이 무엇인지 설명하시오.**   
+    Rx는 무엇인가?
+    Rx는 Reactive Programming 반응형 프로그래밍으로 되어있는 API입니다.
+    반응형 프로그래밍은 변화할 수 있는 상태에 쉽게 대처할 수 있고 이벤트들의 순서,재사용성을 향상 시킬 수 있습니다.
+    즉, 비동기식(여러 작업을 동시에 진행) 활동을 쉽고 안전하게 다룰 수 있습니다.
+    반응형 프로그래밍은 Functional Programming을 활용한다.
+    
+    Functionanl Programming(함수형 프로그래밍)이란?
+    함수형 프로그래밍의 특징은 순수함수(상태의 변화가 없는것)와 익명함수(closure),고차함수(map,reduce,filter)입니다.
+    즉 RxSwift란 함수형 프로그래밍을 활용하는 반응형프로그래밍 API가 Swift와 합쳐진 것이라고 볼 수 있습니다.
+    
+#### **RxSwift의 장단점**   
+    장점
+        1. 코드를 깔끔하게 정리할 수 있다.
+        2. 비동기 작업을 쉽게 관리할 수 있다.
+        3. 반응형 패러다임이 제공하는 명확함, 비동기를 동기화 된 것인양 작성이 가능하다.
+    단점
+        1. 높은 러닝커브
+        2. 클로저 사용이 많아 메모리 누수의 위험이 있다.
+    
+#### **RxSwift에서 Hot Observable과 Cold Observable의 차이를 설명하시오.**   
+#### **Subject와 drive의 차이를 설명하시오.**   
