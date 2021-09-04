@@ -127,7 +127,7 @@
 
     단점
         1. 생산성: 앱이 커질수록 느려짐. storyboard를 분리해서 해결할 수 있다.
-        2. 협업이 어려움: Merge Conflict 문제
+        2. 협업이 어려움: Merge Conflict 문제 (xml 포멧)
         3. 재사용성: 코드와 달리 재사용이 어렵다
         4. 스토리보드로 불가능한 작업이 있음
         
@@ -226,7 +226,7 @@
 #### **Delegate 패턴을 활용하는 경우를 예를 들어 설명하시오.**   
     대표적으로 TableViewDelegate, CollectionViewDelegate가 있다.
     뷰컨트롤러에서 Delegate 함수를 정의하고
-    테이블뷰의 동작이 일어나면 해당 Delegate 함수를 호출하고
+    뷰의 동작이 일어나면 해당 Delegate 함수를 호출하고
     뷰컨트롤러가 대신 처리해준다.
 
 #### **Singleton 패턴을 활용하는 경우를 예를 들어 설명하시오.**   
