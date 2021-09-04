@@ -65,7 +65,28 @@
     객체 간의 작업이기 때문에 참조 값을 사용한다. 그래서 retain 현상이 일어난다.
     
 #### **NotificationCenter 동작 방식과 활용 방안에 대해 설명하시오.**   
+    Notification Center 동작방식
+    하나의 앱에는 알림센터가 하나씩 존재
+    어느화면에서 이벤트가 발생했다는 것을 Notification Center로 송신
+    Notification Center에서 해당 발생된 이벤트를 모든 화면에 broadcast방식으로 전송
+    해당 이벤트를 구독하는 Observer가 있다면 해당 화면에서 이벤트에 대한 처리
+
+    활용방안
+    화면간 연결관계가 없는경우
+    화면의 Depth가 깊을 때
+    같은 이벤트로 다수의 옵저버가 필요한경우
+    
 #### **UIKit 클래스들을 다룰 때 꼭 처리해야하는 애플리케이션 쓰레드 이름은 무엇인가?**   
+    Main Thread
+    Cocoa Touch 어플리케이션은 UIApplication의 인스턴스가 main thread에 attach된다.
+    main thread는 UIApplication으로부터 만들어지고, UIApplication은 앱이 처음 시작될 때 인스턴스화 되는 앱의 첫 시작 부분이다.
+    UIApplication은 어플리케이션 run loop를 포함한 main event loop를 세팅하고이벤트 처리를 한다.
+    어플리케이션의 main event loop는 touch, gesture같은 모든 UI 이벤트들을 받는다.
+
+    어플리케이션 UI 이벤트는 UIApplication->UIWindow->UIViewController->UIView->subviews(UIButton,etc.) 와 같은 response chain에 따라 UIResponse에 전달된다.
+    UIResponder는 버튼 press, tap,확대 축소, swipe 등의 UI 변경으로 인식되는 이벤트를 다룬다.
+    이러한 이벤트들이 main thread에서 발생하므로 응답자가 포함된 UIKit 프레임워크는 main thread에서 작동해야 한다.
+
 #### **App Bundle의 구조와 역할에 대해 설명하시오.**   
 #### **모든 View Controller 객체의 상위 클래스는 무엇이고 그 역할은 무엇인가?**   
 #### **자신만의 Custom View를 만들려면 어떻게 해야하는지 설명하시오.**   
@@ -75,7 +96,19 @@
 #### **UINavigationController 의 역할이 무엇인지 설명하시오.**   
 #### **TableView의 동작 방식과 화면에 Cell을 출력하기 위해 최소한 구현해야 하는 DataSource 메서드를 설명하시오.**   
     동작 방식   
-    나중에!   
+    테이블 뷰는 데이터 기반으로 작동한다.
+    개발자에 의해 정의된 데이터소스 객체로 부터 데이터를 받아오고
+    그 데이터소스 객체는 앱의 데이터를 관리하고, 테이블 뷰의 셀들을 정의하는 역할을 한다.
+    구현은 일반적으로 테이블 뷰가 들어가는 상위 객체에 TableView를 추가하고,
+    해당 객체가 UITableViewDataSource 프로토콜을 채택하게 한다.
+    
+    그 후, numberOfRowInSection과 cellForRowAt 메서드를 정의하면
+    테이블 뷰와 각 셀에 들어간 데이터가 열로 출력된다.
+    테이블 뷰가 내려가면서 새로운 셀을 반환하는 것은 cellForRowAt 메서드에서
+    일반적으로 반환할 셀을 정의할 때, TableView의 dequeReusableCell 메서드를 사용하는데,
+    셀이 화면 밖으로 밀려나면 reusableQueue에 들어가고,
+    다시 나오는 셀은 reusableQueue에서 나오게 되면서 모든 셀을 만드는 것이 아닌 셀을 재사용한다.
+    (모든 셀을 만드는 것은 앱 성능 측면에서 비효율적임) 
    
     UITabelViewDelegate (이 중 필수로 구현하는 메서드는 없습니다.)   
     
