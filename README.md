@@ -105,12 +105,39 @@
 
 ## Autolayout
 #### **오토레이아웃을 코드로 작성하는 방법은 무엇인가? (3가지)**   
+    Anchor
+    NSLayoutConstraint
+    Visual Format Language
 #### **hugging, resistance에 대해서 설명하시오.**   
 #### **Intrinsic Size에 대해서 설명하시오.**   
+    intrinsicContentSize란?
+    View 자체의 본질의 크기
+    UILabel, UIButton, UISwitch,TextField 등 이런 view 들은 제약 없이도 자체적인 width와 height를 가질 수 있다.
 #### **스토리보드를 이용했을때의 장단점을 설명하시오.**   
-#### **Safearea에 대해서 설명하시오.**   
-#### **Left Constraint 와 Leading Constraint 의 차이점을 설명하시오.**   
+    장점
+        1. 제작 속도, 난이도: 뷰를 금방금방 쉽게 만들 수 있음
+        2. 시각화: 앱의 구성이나 흐름을 한눈에 볼 수 있음
 
+    단점
+        1. 생산성: 앱이 커질수록 느려짐. storyboard를 분리해서 해결할 수 있다.
+        2. 협업이 어려움: Merge Conflict 문제
+        3. 재사용성: 코드와 달리 재사용이 어렵다
+        4. 스토리보드로 불가능한 작업이 있음
+        
+#### **Safearea에 대해서 설명하시오.**   
+    Top / Bottom Layout Guide
+    Safe Area 등장전에는 top / bottom layout guide 가 존재했다.
+    상태바, 내비게이션 바, 탭바등에 의해서 가려지는 부분을 피하기 위해서..
+
+    iOS 11이 등장하면서 노치가 생겼고, Landscape 모드일때 Leading / Trailing 마진도 필요하게 되었음.
+    기존에 쓰이던 Top / Bottom Layout Guide가 Deprecate가 됬고, Top, bottom, Leading, Trailing 시스템 마진을 모두 가지는 Safe Area라는 개념이 등장하게 되었다.
+
+#### **Left Constraint 와 Leading Constraint 의 차이점을 설명하시오.**   
+    Left는 왼쪽
+    Leading은 글자가 시작하는 방향
+
+    다국어지원해야할때 유용
+    굳이 left를 써야할 필요는 없을듯
 
 ## Swift
 #### **struct와 class와 enum의 차이를 설명하시오.**   
@@ -180,6 +207,13 @@
     nil 병합 연산자 ??
     
 #### **Struct 가 무엇이고 어떻게 사용하는지 설명하시오.**   
+    언제 구조체를 사용해야 하는가? (by Apple guideline)
+
+    연관된 간단한 값의 집합을 캡슐화 하는 것만이 목적일 때
+    캡슐화된 값이 참조되는 것보다 복사되는 것이 합당할때
+    구조체에 저장된 프로퍼티가 값 타입이며 참조되는 것보다 복사되는 것이 합당할 때
+    다른 타입으로부터 상속받거나 자신이 상속될 필요가 없을 때
+    
 #### **Subscripts에 대해 설명하시오.**   
 #### **instance 메서드와 class 메서드의 차이점을 설명하시오.**   
 #### **Delegate 패턴을 활용하는 경우를 예를 들어 설명하시오.**   
@@ -224,7 +258,56 @@
     Delegation 의 경우, 이벤트를 전달받아야 하는 각각의 객체들 에 delegate 를 설정 해줘야 합니다.
     명확한 답은 없지만, 많은 객체들 에 이벤트를 전달 해야 하는 경우, Notification 을 사용하고 그 외에는 코드의 흐름을 이해하기 쉽고 추적이 쉬운 Delegate 를 사용하는게 좋을 것 같습니다.
     
-#### **멀티 쓰레드로 동작하는 앱을 작성하고 싶을 때 고려할 수 있는 방식들을 설명하시오.**   
+#### **멀티 스레드로 동작하는 앱을 작성하고 싶을 때 고려할 수 있는 방식들을 설명하시오.**   
+    프로세스(Process) 란?
+    프로세스(Process): 운영체제로부터 시스템 자원을 할당받는 작업의 단위. 
+    독립된 메모리 영역(Code Data Stack Heap)을 할당받으며 프로세스끼지 서로의 변수 / 구조에 접근 불가능 (IPC 통신을 사용해야만 함. 파일이나 소켓)
+    
+    멀티 프로세스(Multi Process): 하나의 프로그램을 여러 개의 프로세스로 구성하여, 각 프로세스 마다 하나의 작업을 처리하도록 하는것
+    장점
+        독립된 구조이기 때문에 안정성이 높음
+    단점
+        Context Switching 의 CPU 부담이 크고 오버헤드가 발생한다.
+        프로세스간 자원공유가 어렵다
+
+    쓰레드(Thread) 란?
+    쓰레드(thread): 한 프로세스 내에서 동작되는 여러 실행의 흐름. 
+    Code Data Heap 영역은 공유하고 Stack(LIFO 자료구조여서 공유하기가 힘듬) 영역만 독립적으로 할당받는다. 
+    결국 Heap 영역을 공유할 수 있음. 하지만 여전히 Stack 영역에 접근할 수는 없음.
+    
+    멀티 쓰레드(Multi Thread): 하나의 프로그램을 여러개의 쓰레드로 구성하여, 각 쓰레드마다 하나의 작업씩 처리하도록 하는것
+    장점
+        Code, Data, Heap 영역의 공유로 인해 Context Switching이 빠르다
+        프로세스를 생성하여 자원을 할당하는 것이 아니기 때문에, 생성/종료 시간도 프로세스보다 빠르다
+        통신방법이 간단함
+    단점
+        다루기가 어렵다. 자원공유가 되기때문에, 동기화 문제가 발생함
+        독립적이지 않아서, 하나의 쓰레드에서 발생한 문제가 전체 쓰레드에 영향을 줄 수 있다.
+        
+    멀티 쓰레딩을 사용하는 이유
+        시간이 오래 걸리는 작업 진행시 앱의 실행을 방해해서는 안되기 때문에
+        메모리 공간과 시스템 자원을 절약
+        
+    iOS 에서 고려해야 할 점
+        UI 업데이트에 관련된 작업들은 무조건 main thread에서 구현해야 한다.
+        Thread - unsafe 한 변수는 서로 다른 스레드에서 동시에 접근하지 않게 해야함
+        
+    1) Mutable, Immutable
+        Immutable 인스턴스는 Thread - safe 하다.
+        Mutable 인스턴스는 Thread - unsafe 하다
+        
+    2) 프로퍼티 속성
+        한 프로퍼티를 두개의 스레드가 참조하고 있는 상황에서 해당 프로퍼티의 접근자 매소드를 atomic으로 하지 않는다면 해당 프로퍼티 값에 대한 싱크가 맞지 않을 수 있다
+        동시 접근 가능성이 없다면, nonatomic으로 사용해도 상관없음
+        
+    3) Synchronized
+        semaphore를 이용해서 Lock을 걸 수 있음.
+
+    4) GCD
+        Swift 에서 스레드 작업은 Grand Central Dispatch API를 통해 처리된다.
+        GCD는 클로저 블록 안에 있는 특정 작업을 큐에 올리고, 해당 큐를 특정 스레드에 실행하는 방식이다
+        GCD는 클로저 블록 안에 있는 특정 작업을 큐에 올리고, 해당 큐를 특정 스레드에 실행하는 방식입니다. 
+    
 #### **MVC 구조에 대해 블록 그림을 그리고, 각 역할과 흐름을 설명하시오.**   
 
 #### **프로토콜이란 무엇인지 설명하시오.**
@@ -279,9 +362,16 @@
 #### **defer란 무엇인지 설명하시오.**   
 #### **defer가 호출되는 순서는 어떻게 되고, defer가 호출되지 않는 경우를 설명하시오.**   
 #### **property wrapper에 대해서 설명하시오.**   
+    @propertyWrapper: 반복되는 로직들을 프로퍼티 자체에 연결할수 있다.
+    프로퍼티를 가질 수 있는 타입(class, struct, enum) 앞에 붙힐 수 있다.
+
 #### **Generic에 대해 설명하시오.**   
 #### **Result타입에 대해 설명하시오.**   
 #### **Codable에 대하여 설명하시오.**   
+    Codable은 Encodable과 Decodable이 합쳐진것
+        Encodable : 자신을 외부표현으로 인코딩 할수있는 타입.
+        Decodable : 자신을 외부표현으로부터 디코딩할수있는 타입.
+
 #### **escaping Closure**
     Swift 3 부터는 기본적으로 함수의 인자로 들어온 클로저가 함수 밖에서 실행될수 없습니다.
     따라서 @escaping을 붙이면 함수밖에서 실행가능합니다.
