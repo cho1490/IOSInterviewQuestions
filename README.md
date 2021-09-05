@@ -40,25 +40,135 @@
 #### **@Main에 대해서 설명하시오.**   
 
 #### **App의 Not running, Inactive, Active, Background, Suspended에 대해 설명하시오.**    
-    Not running : 앱이 아예 실행되지 않았거나 시스템에 의해 종료되었을 때의 상황입니다.
-    Inactive : 앱이 foreground 상태이기는 하나 이벤트를 받지 못한 상태입니다.
-    Active : 앱이 foreground에서 실행 중이며 이벤트를 받았을 때의 상황입니다.
-    Background : 앱이 background에 있으며 코드를 실행하고 있는 상태입니다.
-    Suspended : 앱이 background이며 앱이 메모리에 남아 있긴 하나 코드를 실행하고 있지 않은 상태입니다.
+    - https://eunjin3786.tistory.com/163
+    
+    1. App-Based Life-Cycle Events  (iOS 12 and earlier)
+        1) Not Running
+        앱이 실행되지 않은 상태
+        실행되고 난 후, 시스템은 UI가 화면에 보여야한다면 앱을 inactive 상태에, 아니라면 background 상태에 둔다.
+        foreground로 시작할 때 시스템은 자동으로 앱을 active상태로 전환한다.
+        
+        2) Inactive
+        앱이 foreground에서 실행중이지만 아무런 이벤트를 받지 않고 있는 상태 
+        
+        3) Active
+        앱이 foreground에서 실행중이며 이벤트를 받고 있는 상태
+
+        4) Background
+        앱이 background에 있으며 실행되는 코드가 있는 상태 
+        대부분 앱은 suspended상태로 이행하는 도중에 일시적으로 이 상태에 진입하지만 파일 다운로드, 업로드 등 특정 시간동안 이 상태로 남아있게 되는 경우도 있음
+        시스템이 임의로 Background 상태의 앱을 Suspended 상태로 만든다
+
+        5) Suspended
+        앱이 background에 있지만 실행되는 코드가 없는 상태
+        메모리가 부족한 상황이 오면 iOS system은 foreground에 있는 앱의 여유 메모리 공간 확보를 위해 이 상태에 있는 앱들을 특별한 알림없이 정리할 수도 있음
+        
+    2. Scene-Based Life-Cycle Events  (iOS 13 and later)
+        1) Unattached
+        scene이 연결되지 않은 상태
+
+        2) Foreground Inactive
+        App-based의 Inactive와 같음
+
+        3) Foreground Active
+        App-based의 active와 같음
+
+        4) Background
+        App-based의 background와 같음
+
+        5) Suspended
+        App-based의 suspended와 같음
+        
+    차이점 * Not Running상태가 사라지고 Unattached상태가 생김
+        1. Scene-based는 inactive, active라는 네이밍 앞에 foreground를 명시적으로 붙였다.
+        2. App-based는 not running상태와 suspended상태 서로 전환 가능 , Scene-based는 unattached상태와 suspended상태 서로 전환 불가능 
+        3. App-based는 suspended상태에서 inactive상태로 전환 가능, Scene-Based는 suspended상태에서 foreground inactive상태로 전환 불가능. 
    
 #### **앱이 foreground에 있을 때와 background에 있을 때 어떤 제약사항이 있나요?**   
     foreground 
-        메모리 및 기타 시스템 리소스에 높은 우선순위를 가지며 시스템은 이러한 리소스를 사용할 수 있도록 필요에 따라 background 앱을 종료합니다.
+        ?
     background 
-        가능한 적은 메모리공간을 사용해야한다.
-        상태란 앱이 홈화면에 들어가서 사용자한테 보이지 않는 상태를 의미합니다. 
-        하지만앱이 background 상태가 되어도 계속 실행해야 될 때가 존재합니다. 
-        ex) 음악 어플을 사용해 노래를 들을 때 다른 어플을 사용한다고 노래가 멈추지 않는다.
+       task의 실행 지속시간이 10분을 넘기지 못한다. ( 10분이 넘는 순간 suspend로 넘어간다. )
+       사용자에 의한 이벤트를 받지 못한다.
+       메모리 제한
      
 
 #### **상태 변화에 따라 다른 동작을 처리하기 위한 앱델리게이트 메서드들을 설명하시오.**   
+    iOS 12 이하 버전에서는 UIApplicationDelegate 객체를 사용하여 생명주기 이벤트에 응답한다.
+    iOS 13 이상에서는 UISceneDelegate 객체를 사용하여 장면 기반 앱의 생명주기 이벤트에 응답한다.
+    
+    1. App-Based Life-Cycle Events  (iOS 12 and earlier)
+            application(willFinishLaunchingWithOptions:)
+            시작 프로세스가 시작되었지만 상태 복원이 아직 발생하지 않았음을 delegate에게 알려주는 메서드
+
+            application(didFinishLaunchingWithOptions:)
+            프로세스가 거의 완료되었으며 앱을 실행할 준비가 거의 완료되었음을 delegate에게 알려주는 메서드
+
+            applicationDidBecomeActive
+            앱이 Active 상태에 들어간다는걸 delegate에게 알려주는 메서드
+
+            applicationWillResignActive
+            앱이 Inactive 상태에 들어간다는걸 delegate에게 알려주는 메서드
+
+            applicationDidEnterBackground
+            앱이 지금 Background상태에 들어간다는걸 delegate에게 알려주는 메서드
+
+            applicationWillEnterForeground
+            앱이 지금 Foreground상태에 들어간다는걸 delegate에게 알려주는 메서드
+
+            applicationWillTerminate
+            앱이 끝난다는걸 delegate에게 알려주는 메서드
+        
+    2. Scene-Based Life-Cycle Events  (iOS 13 and later)
+        AppDelegate는 scene 구성 및 삭제를 담당합니다.
+        (그래서 AppDelegate는 .configurationForConnecting와 .didDiscardSceneSessions 메소드를 필수로 구현하도록 되어있음)
+
+    [AppDelegate]
+        application(configurationForConnecting:)
+        새 장면을 만들 때 사용할 uikit의 구성 데이터를 반환합니다.
+        
+        application(didDiscardSceneSessions:)
+        사용자가 app switcher에서 하나 이상의 앱 장면을 닫았다고 delegate에게 알려주는 메서드
+        
+        application(didFinishLaunchingWithOptions:)
+        프로세스가 거의 완료되었으며 앱을 실행할 준비가 거의 완료되었음을 delegate에게 알려주는 메서드
+        
+    [SceneDelegate]
+        scene(_:willConnectTo:options:)
+        기존 AppDelegate 의 application(_:didFinishLaunchingWithOptions:) 와 기능이 유사합니다. 앱에 scene 이 추가될 때마다 호출됩니다.
+        
+        sceneDidDisconnect
+        scene이 앱에서 disconnect 될 때 호출됩니다.
+        
+        sceneDidBecomeActive
+        scene이 사용자와 상호작용을 시작할 때 호출됩니다.
+        
+        sceneWillResignActive
+        scene과 상호작용을 중지할 때 호출됩니다.
+        
+        sceneWillEnterForeground
+        scene이 foreground에 들어갈 때 호출됩니다. (앱이 시작하거나 background에서 다시 시작될 때)
+        
+        sceneDidEnterBackground
+        scene이 background에 들어갈때 때 호출됩니다.
+    
 #### **앱이 In-Active 상태가 되는 시나리오를 설명하시오.**   
+    InActive : app이 실행중이지만 사용자로부터 event를 받을 수 없는 상태 applicationWillResignActive(_:)
+        app 실행 중 전화 또는 알림 등으로 app에서 event를 받을 수 없을 때
+        app이 로딩 중일 때
+
 #### **scene delegate에 대해 설명하시오.**   
+    기존 iOS12 버전 에서는 하나의 AppDelegate 에서 process Lifecycle, UI Lifecycle 을 담당했습니다.
+    
+    iOS 13 버전 이상부터 AppDelegate 의 몇 가지 역할을 SceneDelegate 가 담당하게 되었습니다.
+    iOS 13 부터는 여러 UI 인스턴스, Scene session 이 있을 수 있으므로 SceneDelegate 를 따로 빼내 UILifeCycle 에 대한 역할을 분리했습니다. 
+    (UI state 와 관련된 작업은 SceneDelegate 에서 처리)
+    
+    SceneDelegate는 iOS 13에서 소개된 기존의 AppDelegate와 함께 전체적인 앱을 관리하는 Delegate이다.
+    SceneDelegate에서 Window와 Scene의 상태를 한다. ( 아이패드에서 화면분할을 지원하기 위해 새롭게 생성된 델리게이트라고 생각하시면 됩니다!!)
+    
+    - ios 13버전 부터 사용되는 delegate AppDelegate의 몇가지 역할을 담당한다. (여러 scene이 존재 가능, UILifeCycle 관리)
+
 #### **UIApplication 객체의 컨트롤러 역할은 어디에 구현해야 하는가?**   
 #### **NSOperationQueue 와 GCD Queue 의 차이점을 설명하시오.**   
 #### **GCD API 동작 방식과 필요성에 대해 설명하시오.**   
