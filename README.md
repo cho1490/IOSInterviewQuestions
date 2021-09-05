@@ -78,14 +78,8 @@
     
 #### **UIKit 클래스들을 다룰 때 꼭 처리해야하는 애플리케이션 쓰레드 이름은 무엇인가?**   
     Main Thread
-    Cocoa Touch 어플리케이션은 UIApplication의 인스턴스가 main thread에 attach된다.
-    main thread는 UIApplication으로부터 만들어지고, UIApplication은 앱이 처음 시작될 때 인스턴스화 되는 앱의 첫 시작 부분이다.
-    UIApplication은 어플리케이션 run loop를 포함한 main event loop를 세팅하고이벤트 처리를 한다.
-    어플리케이션의 main event loop는 touch, gesture같은 모든 UI 이벤트들을 받는다.
-
-    어플리케이션 UI 이벤트는 UIApplication->UIWindow->UIViewController->UIView->subviews(UIButton,etc.) 와 같은 response chain에 따라 UIResponse에 전달된다.
-    UIResponder는 버튼 press, tap,확대 축소, swipe 등의 UI 변경으로 인식되는 이벤트를 다룬다.
-    이러한 이벤트들이 main thread에서 발생하므로 응답자가 포함된 UIKit 프레임워크는 main thread에서 작동해야 한다.
+    Cocoa Touch 앱에서는 UIApplication의 인스턴스가 main thread에 attach하기 때문에, run loop를 포함하여, main event loop를 설정하고 event처리를 시작합니다.
+    따라서, main thread에서 모든 UI event를 수신하게 되어있습니다. 
 
 #### **App Bundle의 구조와 역할에 대해 설명하시오.**   
 #### **모든 View Controller 객체의 상위 클래스는 무엇이고 그 역할은 무엇인가?**   
