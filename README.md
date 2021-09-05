@@ -38,12 +38,28 @@
 #### **App thinning에 대해서 설명하시오.**   
 #### **앱이 시작할 때 main.c 에 있는 UIApplicationMain 함수에 의해서 생성되는 객체는 무엇인가?**   
 #### **@Main에 대해서 설명하시오.**   
+
+#### **App의 Not running, Inactive, Active, Background, Suspended에 대해 설명하시오.**    
+    Not running : 앱이 아예 실행되지 않았거나 시스템에 의해 종료되었을 때의 상황입니다.
+    Inactive : 앱이 foreground 상태이기는 하나 이벤트를 받지 못한 상태입니다.
+    Active : 앱이 foreground에서 실행 중이며 이벤트를 받았을 때의 상황입니다.
+    Background : 앱이 background에 있으며 코드를 실행하고 있는 상태입니다.
+    Suspended : 앱이 background이며 앱이 메모리에 남아 있긴 하나 코드를 실행하고 있지 않은 상태입니다.
+   
 #### **앱이 foreground에 있을 때와 background에 있을 때 어떤 제약사항이 있나요?**   
+    foreground 
+        메모리 및 기타 시스템 리소스에 높은 우선순위를 가지며 시스템은 이러한 리소스를 사용할 수 있도록 필요에 따라 background 앱을 종료합니다.
+    background 
+        가능한 적은 메모리공간을 사용해야한다.
+        상태란 앱이 홈화면에 들어가서 사용자한테 보이지 않는 상태를 의미합니다. 
+        하지만앱이 background 상태가 되어도 계속 실행해야 될 때가 존재합니다. 
+        ex) 음악 어플을 사용해 노래를 들을 때 다른 어플을 사용한다고 노래가 멈추지 않는다.
+     
+
 #### **상태 변화에 따라 다른 동작을 처리하기 위한 앱델리게이트 메서드들을 설명하시오.**   
 #### **앱이 In-Active 상태가 되는 시나리오를 설명하시오.**   
 #### **scene delegate에 대해 설명하시오.**   
 #### **UIApplication 객체의 컨트롤러 역할은 어디에 구현해야 하는가?**   
-#### **App의 Not running, Inactive, Active, Background, Suspended에 대해 설명하시오.**   
 #### **NSOperationQueue 와 GCD Queue 의 차이점을 설명하시오.**   
 #### **GCD API 동작 방식과 필요성에 대해 설명하시오.**   
 #### **Global DispatchQueue 의 Qos 에는 어떤 종류가 있는지, 각각 어떤 의미인지 설명하시오.**   
