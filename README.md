@@ -630,6 +630,48 @@
     
 ## Architecture
 #### **MVVM, Ribs, VIP 등 자신이 알고있는 아키텍쳐를 설명하시오.**   
+    MVC 패턴은 Controller가 View와 Model 사이에서 중재자 역할을 하여
+    유저와 상호작용은 물론 모델 데이터도 처리한다.
+    구성요소
+    Model : 애플리케이션에서 사용하는 데이터와 데이터 처리부
+    View : 사용자 인터페이스로 화면에 대한 직접적인 접근을 담당
+    Controller : 사용자 입력 처리 및 모델 변화를 감지하여 화면을 갱신함
+    특징 : Controller는 여러 개의 View를 선택할 수 있는 1: N 구조
+    Controller는 View를 선택할 뿐 직접 업데이트하지 않음 (View는 Controller를 알지 못함)
+    장점 : 단순하여 보편적으로 많이 사용함
+    단점 : View와 Model 사이의 의존성이 높음 (애플리케이션이 커지면 복잡해지고 유지 보수가 어려워짐)
+
+    MVP는 View와 Model을 분리해서 사용한다.
+    Model의 역할인 비즈니스 로직을 독립적으로 테스트할 수 있다.
+    구성요소
+    Model : 애플리케이션에서 사용하는 데이터와 데이터 처리부
+    View와 Presenter에 의존적이지 않은 독립적인 영역
+    View : 사용자 인터페이스로 화면에 대한 직접적인 접근을 담당
+    발생하는 이벤트는 직접 핸들링할 수 있으나 Presenter에 위임함
+    Presenter : View와 Model 사이에서 자료 전달 역할을 수행
+    MVC Controller와 차이점은 View에 연결되는 것이 아닌 인터페이스로 연결된다는 점이며
+    MVC가 가진 테스트 가능성 문제와 함께 모듈화/유연성 문제를 해결함
+    특징 : Presenter는 View와 Model의 인스턴스를 가지고 있어 둘을 연결하는 접착제 역할을 수행
+    Presenter와 View는 1:1 관계
+    장점 : View와 Model 간 의존성이 없음
+    (Presenter를 통해서만 데이터를 전달받기 때문)
+    단점 : View와 Presenter 사이의 의존성이 높음
+    애플리케이션이 복잡해지면 View와 Presenter의 의존성이 강해짐
+
+    MVVM 패턴은 뷰 → 뷰 모델, 뷰 모델 → 모델로 작업을 처리하며
+    뷰에서 뷰 모델을 관찰 후 데이터 변경을 감지한다.
+    MVVM은 Model과 View는 다른 패턴과 동일하지만
+    Presenter 또는 Controller 대신 ViewModel이 존재함
+    Model : 애플리케이션에서 사용하는 데이터와 데이터 처리부
+    View : 사용자 인터페이스로 화면에 대한 직접적인 접근을 담당
+    ViewModel : View를 표현하기 위해 만든 View를 위한 Model
+    View를 나타내주기 위한 Model이 자 View를 나타내기 위한 데이터를 처리함
+    특징 : Command 패턴과 Data Binding을 이용하여
+    View와 ViewModel 사이의 의존성을 제거함
+    ViewModel과 View는 1:N 관계
+    장점 : 각각의 부부니 독립적이기 때문에 모듈화하여 개발하기 용이함
+    단점 : View Model 설계가 쉽지 않음
+
 #### **의존성 주입에 대하여 설명하시오.**   
 
 
